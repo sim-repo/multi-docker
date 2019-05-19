@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t ivi/react-test -f ./client/Dockerfile.dev ./client  
+
+script:
+  - docker run ivi/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t ivi/multi-client ./client
+  - docker build -t ivi/multi-nginx ./nginx
+  - docker build -t ivi/multi-server ./server
+  - docker build -t ivi/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push ivi/muti-client
+  - docker push ivi/multi-nginx
+  - docker push ivi/multi-server
+  - docker push ivi/multi-worker
