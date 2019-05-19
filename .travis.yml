@@ -2,19 +2,19 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t ivi/react-test -f ./client/Dockerfile.dev ./client  
+  - docker build -t neogeowild/react-test -f ./client/Dockerfile.dev ./client  
 
 script:
-  - docker run ivi/react-test npm test -- --coverage
+  - docker run neogeowild/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t ivi/multi-client ./client
-  - docker build -t ivi/multi-nginx ./nginx
-  - docker build -t ivi/multi-server ./server
-  - docker build -t ivi/multi-worker ./worker
+  - docker build -t neogeowild/multi-client ./client
+  - docker build -t neogeowild/multi-nginx ./nginx
+  - docker build -t neogeowild/multi-server ./server
+  - docker build -t neogeowild/multi-worker ./worker
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push ivi/multi-client
-  - docker push ivi/multi-nginx
-  - docker push ivi/multi-server
-  - docker push ivi/multi-worker
+  - docker push neogeowild/multi-client
+  - docker push neogeowild/multi-nginx
+  - docker push neogeowild/multi-server
+  - docker push neogeowild/multi-worker
