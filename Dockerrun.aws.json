@@ -35,14 +35,6 @@
             ],
             "links": ["client", "server"],
             "memory": 128
-        },
-        {
-            "name":"",
-            "image":"",
-            "hostname":"",
-            "essential":true,
-            "memory": 128
         }
-
     ]
 }
