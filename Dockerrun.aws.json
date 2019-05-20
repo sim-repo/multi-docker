@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "client",
-            "image": "neogeowild/multi-worker",
+            "image": "neogeowild/multi-client",
             "hostname":"client",
             "essential": false,
             "memory": 128
