@@ -1,0 +1,43 @@
+{
+    "AWSEBDockerrunVersion":2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "neogeowild/multi-worker",
+            "hostname":"client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "neogeowild/multi-server",
+            "hostname":"api",
+            "essential": false
+        },
+        {
+            "name":"worker",
+            "image":"neogeowild/multi-worker",
+            "hostname":"worker",
+            "essential": false
+        },
+        {
+            "name":"nginx",
+            "image":"neogeowild/multi-nginx",
+            "hostname":"nginx",
+            "essential":true,
+            "postMappings":[
+                {
+                    "containerPort": 80,
+                    "hostPort": 80                    
+                }
+            ],
+            "links": ["client", "server"]
+        },
+        {
+            "name":"",
+            "image":"",
+            "hostname":"",
+            "essential":true
+        }
+
+    ]
+}
